@@ -14,8 +14,14 @@ const bot = new TelegramBot(token, { polling: true });
 
 // Listen for any kind of message and respond
 bot.on("message", (msg) => {
-  const chatId = msg.chat.id;
-  const text = msg.text;
+ const chatId = msg.chat.id;
+ const text = msg.text.toLowerCase();
 
-  bot.sendMessage(chatId, `You said: ${text}`);
+ if (text.includes("hello")) {
+   bot.sendMessage(chatId, "Hi there! How can I assist you?");
+ } else if (text.includes("bye")) {
+   bot.sendMessage(chatId, "Goodbye! Have a great day!");
+ } else {
+   bot.sendMessage(chatId, "I did not understand your message.");
+ }
 });
